@@ -1,0 +1,26 @@
+// const express = require('express');
+// const app = express();
+// const http = require('http');
+// const server = http.createServer(app);
+// const PORT = 8080;
+
+// app.get('/', (req, res) => {
+//   res.send('<h1>Hello world</h1>');
+// });
+
+// server.listen(PORT, () => {
+//   console.log(`listening on *:${PORT}`);
+// });
+
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+
+app.get('/', (req, res) => {
+  res.send('<h1>Hello world</h1>');
+});
+
+server.listen(3001, () => {
+  console.log('listening on *:3001');
+});
