@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Chat({socket, username, room}) {
     const [currentMessage, setCurrentMessage] = useState('')
@@ -16,13 +16,23 @@ function Chat({socket, username, room}) {
         }
     }
 
+    useEffect(() => {
+        socket.on('receive_message', (data) => {
+            console.log(data)
+        })
+        return () => {
+            socket.off()
+        }
+    }, [socket])
+
   return (
     <div>
         <h1>CHAT</h1>
         <div className='chat-header'>
             <p>Live Chat</p>
         </div>
-        <div className='chat-body'></div>
+        <div className='chat-body'>
+        </div>
         <div className='chat-footer'>
             <input type="text" placeholder='Message' onChange={e => setCurrentMessage(e.target.value)} />
             <button onClick={sendMessage}>&#9658;</button>
