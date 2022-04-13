@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function Chat({socket, username, room}) {
+function Chat({socket, username, room }) {
     const [currentMessage, setCurrentMessage] = useState('')
     const [messageList, setMessageList] = useState([])
 
@@ -15,6 +15,7 @@ function Chat({socket, username, room}) {
 
             await socket.emit("send_message", messageData)
             setMessageList((messages) => [...messages, messageData])
+            setCurrentMessage('')
         }
     }
 
@@ -44,7 +45,7 @@ function Chat({socket, username, room}) {
             })}
         </div>
         <div className='chat-footer'>
-            <input type="text" placeholder='Message' onChange={e => setCurrentMessage(e.target.value)} />
+            <input type="text" placeholder='Message' value={currentMessage} onChange={e => setCurrentMessage(e.target.value)} />
             <button onClick={sendMessage}>&#9658;</button>
         </div>
     </div>
