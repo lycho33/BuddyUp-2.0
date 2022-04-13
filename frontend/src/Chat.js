@@ -14,6 +14,7 @@ function Chat({socket, username, room}) {
             }
 
             await socket.emit("send_message", messageData)
+            setMessageList((messages) => [...messages, messageData])
         }
     }
 
@@ -36,7 +37,7 @@ function Chat({socket, username, room}) {
         <div className='chat-body'>
             {messageList.map((val, i) => {
                 return (
-                    <div>
+                    <div key={i}>
                         {val.message}
                     </div>
                 )
